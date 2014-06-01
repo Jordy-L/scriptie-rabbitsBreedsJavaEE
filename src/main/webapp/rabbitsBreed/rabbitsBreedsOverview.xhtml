@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+        
+        <ui:composition template=".././WEB-INF/template.xhtml">
+
+            <ui:define name="title">
+                #{messages.rabbitsBreedsOverview_title}
+            </ui:define>
+            
+            <ui:define name="content">
+                <h1>#{messages.rabbitsBreedsOverview_h1}</h1>
+                <h:form>
+                    <h:dataTable value="#{rabbitsBreedController.rabbitsBreeds}" var="rabbitsBreed"
+                        styleClass="table table-responsive table-bordered table-striped">
+                        <h:column>
+                            <f:facet name="header">#{messages.rabbitsBreed_breed}</f:facet>
+                            #{rabbitsBreed.breed}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">#{messages.rabbitsBreed_weight}</f:facet>
+                            #{rabbitsBreed.weight}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">&nbsp;</f:facet>
+                            <h:commandLink action="#{rabbitsBreedController.viewRabbitsBreed()}" value="#{messages.details}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{rabbitsBreedController.prepareEditRabbitsBreed()}" value="#{messages.edit}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{rabbitsBreedController.deleteRabbitsBreed()}" value="#{messages.delete}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:form>
+                
+            </ui:define>
+     
+        </ui:composition>
+
+    </body>
+</html>
